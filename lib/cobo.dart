@@ -166,11 +166,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//TODO listview class
 class _PageList extends StatefulWidget {
   @override
   _PageListState createState() => _PageListState();
 }
-
+//TODO class listview dan isi list masih statis
 class _PageListState extends State<_PageList> {
 
   List<String> languages = [
@@ -204,6 +205,7 @@ class _PageListState extends State<_PageList> {
   }
 }
 
+//TODO tampilan awal setelah login masuk ketab home
 class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
