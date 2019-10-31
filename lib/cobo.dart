@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'home_page.dart';
 
 
@@ -9,6 +10,7 @@ class Homepage extends StatelessWidget {
 
   Homepage({Key key, this.title}) : super(key: key);
 
+  //TODO dibawah ini digunakan untuk membuat AppBar
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,6 +26,7 @@ class Homepage extends StatelessWidget {
           ),
         ],
       ),
+      //TODO dibawah ini digunakan untuk membuat drawer
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -71,6 +74,7 @@ class Homepage extends StatelessWidget {
               title: Text("Close"),
               onTap: (){
                 Navigator.of(context).pop();
+                //TODO navigator ini untuk menutup drawer
               },
             ),
           ],
@@ -81,20 +85,22 @@ class Homepage extends StatelessWidget {
         child: new Scaffold(
           appBar: new AppBar(
             actions: <Widget>[],
+            //TODO dibawah ini fungsinya untuk membuat tab yang jumlahnya 3
             title: new TabBar(
               tabs: [
-                new Tab(icon: new Icon(Icons.directions_car)),
-                new Tab(icon: new Icon(Icons.directions_transit)),
-                new Tab(icon: new Icon(Icons.directions_bike)),
+                new Tab(text: "Home",),
+                new Tab(text: "SnackBar",),
+                new Tab(text: "ListView",),
               ],
               indicatorColor: Colors.white,
             ),
           ),
+          //TODO dalam bodynya terdapat isi dari masing-masing Tab
           body: new TabBarView(
             children: [
+              Welcome(),
               SnackBarPage(),
-              new Icon(Icons.directions_transit,size: 50.0,),
-              new Icon(Icons.directions_bike,size: 50.0,),
+              MyApp(),
             ],
           ),
         ),
@@ -103,6 +109,7 @@ class Homepage extends StatelessWidget {
   }
 }
 
+//TODO terdapat class MyApp1
 class MyApp1 extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -118,6 +125,7 @@ class MyApp1 extends StatelessWidget {
   }
 }
 
+//TODO class snackbar untuk menampilkan snackbar
 class SnackBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -138,6 +146,92 @@ class SnackBarPage extends StatelessWidget {
           Scaffold.of(context).showSnackBar(snackBar);
         },
         child: Text('Show SnacnkBar'),
+      ),
+    );
+  }
+}
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'ListView Builder',
+      home: Scaffold(
+        body: _PageList(),
+      ),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class _PageList extends StatefulWidget {
+  @override
+  _PageListState createState() => _PageListState();
+}
+
+class _PageListState extends State<_PageList> {
+
+  List<String> languages = [
+    "Dart",
+    "Kotlin",
+    "Java",
+    "PHP",
+    "Swift",
+    "Javascript",
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.grey[300],
+      child: ListView.builder(
+        itemCount: languages.length,
+        itemBuilder: (BuildContext context, int index) {
+          final number = index+1;
+          final language = languages[index].toString();
+          return Card(
+            child: ListTile(
+              leading: Text(number.toString()),
+              title: Text(language),
+              trailing: Icon(Icons.check),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class Welcome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _screenSize = MediaQuery.of(context).size;
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'First App',
+      home: Scaffold(
+          body:  Container(
+            height: 500,
+            child: Column(
+              children: <Widget>[
+                Image.asset('img/bg.jpg'),
+                Text(
+                  'Welcome to My Project',
+                  style: TextStyle(fontSize: 24, fontFamily: "Serif", height: 2.0),
+                ),
+                Text('oleh Programer Tcupu'),
+//                Row(
+//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                  children: <Widget>[
+//                    Image.asset('img/p.jpg'),
+//                    Image.asset('img/p.jpg')
+//                  ],
+//                )
+              ]
+          )
+          )
       ),
     );
   }

@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>  with SingleTickerProviderStateMixin{
   var statusClik = 0;
+  //TODO class _LoginPageState terdapat variabel statusclik bernilai 0
 
   TextEditingController editingControllerUser;
   TextEditingController editingControllerPass;
@@ -19,7 +20,7 @@ class _LoginPageState extends State<LoginPage>  with SingleTickerProviderStateMi
   AnimationController animationControllerButton;
   @override
   void initState() {
-
+//TODO dibawah ini digunakan untuk membuat tampilan login bagian user dan pass
     editingControllerUser = TextEditingController(text: '');
     editingControllerPass = TextEditingController(text: '');
     // TODO: implement initState
@@ -124,12 +125,14 @@ class _LoginPageState extends State<LoginPage>  with SingleTickerProviderStateMi
                     ],
                   ),
                   statusClik == 0
+                  //TODO jika status klik 0 dan diklik maka menjalankan InkWell dan status akan menjadi 1
                       ? new InkWell(
                           onTap: () {
                             setState(() {
                               statusClik = 1;
                             });
                             _playAnimation();
+                            //TODO setelah status klik bernilai 1 akan menjalankan _playAnimation
                           },
                           child: SignIn())
                       : new StarAnimation(
@@ -147,6 +150,7 @@ class _LoginPageState extends State<LoginPage>  with SingleTickerProviderStateMi
   }
 }
 
+//TODO class SignIn
 class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
